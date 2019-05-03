@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Fake News Detection System</title>
+    {% load static %}
+    <link rel="stylesheet"  type="text/css" href="{% static 'fake/bootstrap/css/bootstrap.min.css' %}">
+</head>
+<body>
+<div class="container">
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#">Automatic Fake News Detection System</a>
+        </div>
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="#">Home</a></li>
+          <li><a href="#">Page 1</a></li>
+          <li><a href="#">Page 2</a></li>
+          <li><a href="#">Page 3</a></li>
+        </ul>
+      </div>
+    </nav>
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <h1>Verify news</h1>
+            <hr>
+            <form action="." class="form-horizontal" method="post" enctype="multipart/form-data">
+                {% csrf_token%}
+                {% include 'fake/form_template.html'%}
+                <input type="hidden" name="next" value="{{ next }}" />
+                <div class="form-group">
+                    <div class="col-md-12">
+                        <button type="Submit" class="btn btn-success">Verify</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    {% if prediction != "" %}
+    <p>The given statement is <span style="color:green;font-weight:bold">{{ prediction }}</span></p>
+    <p>The truth probability score is <span  style="color:green;font-weight:bold">{{ prob }}</span></p>
+    {% else %}
+    <p style="font-style:italic; color: grey">Your results will appear here</p>
+    {% endif %}
+
+</div>
+</body>
+	{% load static %}
+<script src="{% static 'fake/bootstrap/js/jquery.js' %}"></script>
+<script src="{% static 'fake/bootstrap/js/bootstrap.js' %}"></script>
+</html>

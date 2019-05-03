@@ -1,0 +1,13 @@
+{% for field in fakeform %}
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <span class="text-danger small">{{field.errors}}</span>
+        </div>
+        <div class="col-md-4">
+            <label class="control-label">{{field.label_tag}}</label>
+        </div>
+        <div class="col-md-10">
+            {{field}}
+        </div>
+    </div>
+{%endfor%}
